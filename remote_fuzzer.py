@@ -51,7 +51,7 @@ while True:
       s.settimeout(timeout)
       s.connect((ip, port))
       s.recv(1024)
-      print("Fuzzing with {} bytes".format(len(string) - len(prefix)))
+      print("Sending evil buffer of {} bytes".format(len(string) - len(prefix)))
       s.send(bytes(string, "latin-1"))
       s.recv(1024)
   except:
